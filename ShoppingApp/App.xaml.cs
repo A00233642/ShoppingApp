@@ -1,4 +1,5 @@
 ﻿using System;
+using ShoppingApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,8 @@ namespace ShoppingApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            // MainPage = new MainPage();
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()
