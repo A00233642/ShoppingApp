@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ShoppingApp.Views.ProductsView">
+
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="All products will be displayed here"  TextColor="Black" FontSize="Title"/>
+
+            <Button Text="Back to home" BorderColor="Brown" BackgroundColor="DarkBlue" HorizontalOptions="Center" CornerRadius="20" Clicked="Button_Clicked" WidthRequest="100" TextColor="White" FontSize ="Medium"/>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
