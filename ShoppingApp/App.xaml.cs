@@ -12,7 +12,8 @@ namespace ShoppingApp
             InitializeComponent();
 
             // MainPage = new MainPage();
-            MainPage = new LoginView();
+            //MainPage = new LoginView();
+            MainPage = new NavigationPage(new SettingsPage());
         }
 
         protected override void OnStart()
