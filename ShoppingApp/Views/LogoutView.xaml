@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ShoppingApp"
+    x:Class="ShoppingApp.Views.LogoutView">
+
+    <ContentPage.Content>
+
+       
+
+
+        <StackLayout>
+        <Label Text="ImageButton"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+            <Image HorizontalOptions="End">
+
+                <Image.Source>
+                    <FontImageSource Color="Black" Size="20" FontFamily="UserIcons" Glyph="{x:Static local:FontIconsClass.Shopping}" />
+
+
+
+
+                </Image.Source>
+
+
+            </Image>
+
+
+
+       <Button ImageSource=""  HeightRequest="50" WidthRequest="20"  
+                  BackgroundColor="DeepSkyBlue" 
+                 CornerRadius="5" HorizontalOptions="End" />
+
+    </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
