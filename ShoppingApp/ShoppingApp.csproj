@@ -28,6 +28,7 @@
     <None Remove="ViewModels\" />
     <None Remove="Xamarin.Forms.Visual.Material" />
     <None Remove="Xamarin.Forms" />
+    <None Remove="mymaterialIcon.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -36,5 +37,8 @@
     <Folder Include="Services\" />
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mymaterialIcon.ttf" />
   </ItemGroup>
 </Project>
