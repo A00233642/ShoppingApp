@@ -7,3 +7,7 @@ using Xamarin.Forms.Xaml;
 
 
 [assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "FontAwesome")]
+
+
+
+[assembly: ExportFont("mymaterialIcon.ttf", Alias = "UserIcons")]
