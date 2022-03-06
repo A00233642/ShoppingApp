@@ -16,5 +16,9 @@ namespace ShoppingApp.Views
         {
           await  Navigation.PopModalAsync();
         }
+
+        void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
+        }
     }
 }
