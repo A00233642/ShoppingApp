@@ -2,17 +2,180 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ShoppingApp.Views.ProductsView">
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
+    xmlns:local="clr-namespace:ShoppingApp"
+    
+    xmlns:helpers="clr-namespace:FoodAPP.Helpers"
+    xmlns:vm="clr-namespace:ShoppingApp.ViewModels" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Class="ShoppingApp.Views.ProductsView"
 
+    BackgroundColor="FloralWhite"
+    >
+
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel />
+    </ContentPage.BindingContext>
 
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="All products will be displayed here"  TextColor="Black" FontSize="Title"/>
 
-            <Button Text="Back to home" BorderColor="Brown" BackgroundColor="DarkBlue" HorizontalOptions="Center" CornerRadius="20" Clicked="Button_Clicked" WidthRequest="100" TextColor="White" FontSize ="Medium"/>
+         <Grid Margin="20, 0, 0, 0">
+           <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
 
-        </StackLayout>
+           </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                
+
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Welcome To" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+                
+                <Label Text="ENaija Store" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+                <Label Text="{Binding Username}" Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="Bold"/>
+
+              <!--  <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Source="{FontImage FontFamily=FontAwesome, Glyph={x:Static helpers:IconFont.ViewList}, Size=40, Color=Purple}" Margin="0, 0, 10, 0" HorizontalOptions="End"/> -->
+
+
+                 <Label Text="{Binding UserCartItemsCount}" FontSize="Subtitle" Grid.Row="0"
+                        Grid.Column="2" Grid.RowSpan="2" HorizontalTextAlignment="End" VerticalTextAlignment="Start"/>
+
+                 <ImageButton Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Source="{FontImage FontFamily=UserIcons, Glyph={x:Static local:FontIconsClass.Shopping}, Size=40, Color=Black}" Margin="0, 0, 10, 0" HorizontalOptions="End" Command="{Binding ViewCartCommand}"/>
+
+                 <ImageButton Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Source="{FontImage FontFamily=UserIcons, Glyph={x:Static local:FontIconsClass.Logout}, Size=40, Color=Black}" Margin="0, 0, 10, 0" HorizontalOptions="End" Command="{Binding LogoutCommand}"/>
+
+                <!-- <ImageButton Source="Logout.png"  Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="0, 0, 10, 0" 
+                    HorizontalOptions="End" 
+                     /> -->
+                
+                 
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+           <!--<SearchBar Grid.Column="0" Placeholder="search Food" BackgroundColor="Transparent"
+ HorizontalOptions="Fill"/>-->     
+
+               <!-- <ImageButton Grid.Column="1" Source="{FontImage FontFamily=FontAwesome, Glyph={x:Static helpers:IconFont.SearchWeb}, Size=40, Color=Orange}" Margin="0, 0, 10, 0" HorizontalOptions="End"/>
+-->
+
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Categories}" Margin="0,20" HeightRequest="125" VerticalOptions="FillAndExpand" HorizontalScrollBarVisibility="Always" ItemsLayout="HorizontalList"
+                           SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single" Grid.Row="2">
+
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0, 10, 15, 0">
+                            <Frame HeightRequest="50" HasShadow="False" BackgroundColor="#feeee8" CornerRadius="10" >
+                                <Image Source="{Binding ImageUrl}"/>
+
+                            </Frame>
+                            <Label Text="{Binding CategoryName}" HorizontalTextAlignment="Center"/>
+                          
+                        </StackLayout>
+
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <Label Grid.Row="3" Text="Latest Items" FontSize="25" FontAttributes="Bold" TextColor="#22421f" />
+
+            <CollectionView ItemsSource="{Binding LatestItems}" Margin="0,20, 10, 0"  VerticalOptions="Start" VerticalScrollBarVisibility="Always"                           Grid.Row="4">
+
+                <CollectionView.ItemTemplate>
+                <DataTemplate>
+                 <StackLayout Margin="0, 15">
+                     <Grid>
+                         <Grid.RowDefinitions>
+                             <RowDefinition Height="Auto"/>
+                             <RowDefinition Height="Auto"/>
+                             <RowDefinition Height="Auto"/>
+                              
+
+                         </Grid.RowDefinitions>
+
+                         <pancake:PancakeView Grid.Row="0" CornerRadius="60,0,0,60" Margin="15, 0, 40, 0" >
+
+                             <Image Source="{Binding ImageUrl}"  HeightRequest="190" Aspect="Fill"  >
+
+                                  <Image.GestureRecognizers>
+        <TapGestureRecognizer
+                Command="{Binding TapCommand}"
+                NumberOfTapsRequired="1" />
+  </Image.GestureRecognizers>
+
+
+
+                             </Image>
+     
+                         </pancake:PancakeView>
+
+                         <Frame Grid.Row="1" Margin="-20, -19, -20,-10" BackgroundColor="#eba0b0" CornerRadius="15" HorizontalOptions="Center">
+
+                             <Label Text="{Binding Price, StringFormat='{0:c}'}" FontSize="Small" FontAttributes="Bold" TextColor="Black" HeightRequest="10"/>
+
+                         </Frame>
+
+                         <Label Grid.Row="1" Text="{Binding Name}" FontSize="22" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                         <Image Grid.Row="2" Source="star" HorizontalOptions="Start" WidthRequest="20"/>
+                         <Label Grid.Row="2" Margin="30, 0, 0, 0" FontSize="15" VerticalOptions="Center">
+                             <Label.FormattedText>
+                                 <FormattedString>
+                                     <Span Text="{Binding Rating}" FontAttributes="Bold"/>
+                                     <Span Text="{Binding Description}" TextColor="Black"/>
+
+
+                                 </FormattedString>
+
+
+                             </Label.FormattedText>
+
+
+                         </Label>
+
+                     </Grid>
+
+
+                 </StackLayout>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+
+        </Grid>
 
     </ContentPage.Content>
 </ContentPage>

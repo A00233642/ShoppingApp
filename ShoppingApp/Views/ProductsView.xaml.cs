@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using ShoppingApp.Model;
 using Xamarin.Forms;
 
 namespace ShoppingApp.Views
@@ -17,8 +18,18 @@ namespace ShoppingApp.Views
           await  Navigation.PopModalAsync();
         }
 
-        void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        async void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
         {
+            var category = e.CurrentSelection.FirstOrDefault() as Category;
+            if (category == null)
+                return;
+
+            await Navigation.PushModalAsync(new CategoryView(category));
+
+            ((CollectionView)sender).SelectedItem = null;
+
+
         }
+
     }
 }
