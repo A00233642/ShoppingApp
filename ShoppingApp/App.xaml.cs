@@ -13,19 +13,19 @@ namespace ShoppingApp
             InitializeComponent();
 
             // MainPage = new MainPage();
-            //MainPage = new LoginView();
-            // MainPage = new NavigationPage(new SettingsPage());
+            MainPage = new LoginView();
+           //  MainPage = new NavigationPage(new SettingsPage());
 
-            string uname = Preferences.Get("Username", String.Empty);
+         //  string uname = Preferences.Get("Username", String.Empty);
 
-            if (String.IsNullOrEmpty(uname))
-            {
-              MainPage = new LoginView();
-           }
-          else
-          {
-               MainPage = new ProductsView();
-           }
+         //   if (String.IsNullOrEmpty(uname))
+        //    {
+       //       MainPage = new LoginView();
+      //     }
+     //     else
+      //    {
+      //         MainPage = new ProductsView();
+      //     }
         }
 
         protected override void OnStart()
