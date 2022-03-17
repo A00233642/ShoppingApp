@@ -16,6 +16,7 @@
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="FirebaseDatabase.net" />
@@ -29,6 +30,7 @@
     <None Remove="Xamarin.Forms.Visual.Material" />
     <None Remove="Xamarin.Forms" />
     <None Remove="mymaterialIcon.ttf" />
+    <None Remove="sqlite-net-pcl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
