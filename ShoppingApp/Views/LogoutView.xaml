@@ -2,40 +2,78 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:helpers="clr-namespace:FoodAPP.Helpers"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
+    xmlns:vm="clr-namespace:ShoppingApp.ViewModels"
     xmlns:local="clr-namespace:ShoppingApp"
-    x:Class="ShoppingApp.Views.LogoutView">
+    x:Class="ShoppingApp.Views.LogoutView"
+    BackgroundColor="FloralWhite"
+    Visual="Material">
+
+
+    <ContentPage.BindingContext>
+
+        <vm:LogoutViewModel/>
+    </ContentPage.BindingContext>
+
 
     <ContentPage.Content>
 
        
+         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+         <ImageButton Source="{FontImage FontFamily=UserIcons, Glyph={x:Static local:FontIconsClass.ArrowLeft}, Size=30,Color=Black}"
+                         Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+            VerticalOptions="Start" Margin="10, 30" Clicked="ImageButton_Clicked" />
+
+          <Label Text="ShoppingApp" FontSize="40"
+                 TextColor="Black"
+                 FontFamily="CabinSketch" HorizontalOptions="Center"
+                 VerticalOptions="Start"/>
+
+          <Label x:Name="LabelName" FontSize="Subtitle"
+                 Margin="20,0" TextColor="Black"
+                 FontFamily="CabinSketch" HorizontalOptions="Center"
+                 VerticalOptions="End"/>
 
 
-        <StackLayout>
-        <Label Text="ImageButton"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+            <pancake:PancakeView BackgroundColor="WhiteSmoke"
+                                 CornerRadius="60, 60, 0, 0"
+                                 Grid.Row="1">
 
-            <Image HorizontalOptions="End">
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <StackLayout IsVisible="{Binding IsCartExists}">
 
-                <Image.Source>
-                    <FontImageSource Color="Black" Size="20" FontFamily="UserIcons" Glyph="{x:Static local:FontIconsClass.Shopping}" />
+                        <Label Text="Cart, is not empty!"/>
+                        <Label Text="{Binding UserCartItemsCount, StringFormat='Your Cart Contains{0} items'}"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Are you sure you want to logout"/>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Button Text="Yes, Logout" HorizontalOptions="Center"
+                                    BackgroundColor="Red" CornerRadius="20"
+                                    Command="{Binding LogoutCommand}"/>
+                            <Button Text="No, Go To Cart" HorizontalOptions="Center"
+                                    BackgroundColor="LightGreen" CornerRadius="20"
+                                    Command="{Binding GotoCartCommand}"/>
 
 
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </pancake:PancakeView>
 
+        </Grid>
 
-                </Image.Source>
-
-
-            </Image>
-
-
-
-       <Button ImageSource=""  HeightRequest="50" WidthRequest="20"  
-                  BackgroundColor="DeepSkyBlue" 
-                 CornerRadius="5" HorizontalOptions="End" />
-
-    </StackLayout>
-
+       
     </ContentPage.Content>
 </ContentPage>
